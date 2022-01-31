@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+#define ll long long int
+
+void solve(){
+        
+         ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+        ll n;
+        cin>>n;
+        
+        ll ans=0;
+        
+        while(n>1){
+                ll hsb=31;
+                
+                while(hsb>=0 & (((1ll<<hsb)&n)==0))
+                --hsb;
+                ll maxvalue=0;
+                
+                for(int i=0;i<=hsb;i++)
+                {
+                        maxvalue+=(1ll<<i);
+                }
+                
+                if(maxvalue==n)
+                {
+                        n--;
+                        continue;
+                }
+                
+                ll leastvalue=maxvalue xor n;
+                
+                ans+=maxvalue*(n-leastvalue+1);
+                
+                n=leastvalue-1;
+                
+        }cout<<ans<<endl;
+}
+
+int main() {
+        
+	// your code goes here
+	
+	 ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    
+	ll t;
+	cin>>t;
+	
+	while(t--)
+	solve();
+	return 0;
+}
